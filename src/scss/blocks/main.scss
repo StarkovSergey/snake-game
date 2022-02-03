@@ -1,0 +1,25 @@
+.main {
+  display: flex;
+  justify-self: center;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#game-board {
+  display: grid;
+  grid-template-rows: repeat(21, 1fr);
+  grid-template-columns: repeat(21, 1fr);
+  width: calc(100vmin - 190px);
+  height: calc(100vmin - 190px);
+  background-color: #cccccc;
+}
+
+.snake {
+  border: 0.25vmin solid black;
+  background-color: #238f23;
+}
+
+.food {
+  border: 0.25vmin solid black;
+  background-color: #f19e17;
+}
