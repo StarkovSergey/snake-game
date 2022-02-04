@@ -1,5 +1,7 @@
 import { onSnake, expandSnake } from './snake.js';
 import { randomGridPosition } from './grid.js';
+import { gameStatus } from './game-status.js';
+import { updateElement } from './interface.js';
 
 const getRandomFoodPosition = () => {
   let newFoodPosition = null;
@@ -17,6 +19,10 @@ export const update = () => {
   if (onSnake(food)) {
     expandSnake(EXPANSION_RATE);
     food = getRandomFoodPosition();
+    gameStatus.plusScore();
+    gameStatus.minusHunger();
+    updateElement('score');
+    updateElement('hunger');
   }
 };
 

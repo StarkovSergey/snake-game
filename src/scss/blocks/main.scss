@@ -10,7 +10,9 @@
   grid-template-rows: repeat(21, 1fr);
   grid-template-columns: repeat(21, 1fr);
   width: calc(100vmin - 190px);
+  min-width: 300px;
   height: calc(100vmin - 190px);
+  min-height: 300px;
   background-color: #cccccc;
 }
 
