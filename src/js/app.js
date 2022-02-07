@@ -4,13 +4,15 @@ import {
 } from './snake.js';
 import { update as updateFood, draw as drawFood } from './food.js';
 import { outsideGrid } from './grid.js';
-import { renderHunger } from './interface.js';
+import { renderScoreElement, renderScoreElements, scoreParameters } from './interface.js';
 
 let lastRenderTime = 0;
 let gameOver = false;
+let resetGame = false;
+
+renderScoreElements();
 
 const gameBoard = document.querySelector('#game-board');
-renderHunger();
 
 const checkDeath = () => {
   gameOver = outsideGrid(getSnakeHead()) || snakeIntersection();
@@ -36,17 +38,21 @@ const draw = () => {
 function main(currentTime) {
   if (gameOver) {
     if (confirm(`You lost. Your score is ${gameStatus.score}. Press ok to restart.`)) {
-      window.location = '/';
+      // location.reload();
+      resetGame = true;
+      gameStatus.resetGame();
+    } else {
+      return;
     }
-    return;
   }
 
   window.requestAnimationFrame(main); // в cb передаётся time stamp
 
   const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000;
-  if (secondsSinceLastRender < 1 / gameStatus.speed) {
+  if ((secondsSinceLastRender < 1 / gameStatus.speed) && resetGame === false) {
     return;
   }
+  resetGame = false;
 
   lastRenderTime = currentTime;
   update();
@@ -60,7 +66,7 @@ function main(currentTime) {
       gameStatus.plusLevel();
       gameStatus.win = false;
       gameStatus.newSegment = 0;
-      renderHunger();
+      renderScoreElements();
     }
   }
 }

@@ -1,10 +1,13 @@
 export const gameStatus = {
-  speed: 8,
   win: false,
   snakeBody: [{ x: 11, y: 11 }],
   newSegment: 0,
   resetSnakeBody() {
     this.snakeBody = [{ x: 11, y: 11 }];
+  },
+  speed: 8,
+  resetSpeed() {
+    this.speed = 8;
   },
   speedUp() {
     this.speed++;
@@ -13,15 +16,22 @@ export const gameStatus = {
   plusScore() {
     this.score++;
   },
-  hunger: 2,
+  hunger: 3,
+  resetHunger() {
+    this.hunger = 3;
+  },
   minusHunger() {
     this.hunger--;
-  },
-  resetHunger() {
-    this.hunger = 5;
   },
   level: 0,
   plusLevel() {
     this.level++;
+  },
+  resetGame() {
+    this.resetSnakeBody();
+    this.resetSpeed();
+    this.score = 0;
+    this.resetHunger();
+    this.level = 0;
   },
 };
