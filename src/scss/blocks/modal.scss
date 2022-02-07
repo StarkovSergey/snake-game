@@ -1,0 +1,14 @@
+.modal {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  display: none;
+  max-width: 320px;
+  padding: 20px;
+  backdrop-filter: blur(3px);
+  transform: translateX(-50%);
+
+  &--open {
+    display: block;
+  }
+}

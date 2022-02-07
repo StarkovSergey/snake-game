@@ -4,7 +4,11 @@ import {
 } from './snake.js';
 import { update as updateFood, draw as drawFood } from './food.js';
 import { outsideGrid } from './grid.js';
-import { renderScoreElement, renderScoreElements, scoreParameters } from './interface.js';
+import { renderScoreElements } from './interface.js';
+import { showModal, closeModal } from './save-results.js';
+
+const modalForm = document.querySelector('.form');
+const tableModal = document.querySelector('.modal__table');
 
 let lastRenderTime = 0;
 let gameOver = false;
@@ -37,13 +41,9 @@ const draw = () => {
 
 function main(currentTime) {
   if (gameOver) {
-    if (confirm(`You lost. Your score is ${gameStatus.score}. Press ok to restart.`)) {
-      // location.reload();
-      resetGame = true;
-      gameStatus.resetGame();
-    } else {
-      return;
-    }
+    document.querySelector('.form__score').textContent = gameStatus.score;
+    showModal(modalForm);
+    return;
   }
 
   window.requestAnimationFrame(main); // в cb передаётся time stamp
@@ -71,9 +71,26 @@ function main(currentTime) {
   }
 }
 
+const restartGame = () => {
+  closeModal(modalForm);
+  closeModal(tableModal);
+  gameOver = false;
+  gameStatus.resetGame();
+  renderScoreElements();
+  window.requestAnimationFrame(main);
+};
+
+document.querySelectorAll('.restart-button').forEach((button) => button.addEventListener('click', restartGame));
+
 window.requestAnimationFrame(main);
 
 console.log(`
-[x] - Вёрстка (+10)
-[x] - Логика игры. Ходы, перемещения фигур, другие действия игрока подчиняются определённым свойственным игре правилам (+10)
+Total Score: 50 / 60
+[x] - Вёрстка присутствует:) (+10)
+[x] - Логика игры (+10)
+[x] - Реализовано завершение игры при достижении игровой цели (+10)
+[x] - По окончанию игры выводится её результат - score (+10)
+[x] - Результаты последних 10 игр сохраняются в local storage. Есть таблица рекордов, в которой сохраняются результаты предыдущих (+10)
+[] - Анимации или звуки, или настройки игры
+[] - Качество оформления
 `);

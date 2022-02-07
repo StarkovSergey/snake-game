@@ -202,6 +202,21 @@ button {
   background-color: #72c888;
 }
 
+.modal {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  display: none;
+  max-width: 320px;
+  padding: 20px;
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  transform: translateX(-50%);
+}
+.modal--open {
+  display: block;
+}
+
 .main {
   display: flex;
   justify-self: center;
@@ -228,6 +243,21 @@ button {
 .food {
   border: 0.25vmin solid black;
   background-color: #f19e17;
+}
+
+.modal__table {
+  max-width: 800px;
+}
+
+.modal__box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table {
+  width: 200px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .footer {

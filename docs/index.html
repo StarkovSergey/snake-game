@@ -43,6 +43,45 @@
   </div>
 </footer>
 
+    <div class="modal form">
+  <p>The end! Your score: <span class="form__score"></span></p>
+  <form class="form__form">
+    <label for="name">Your name</label>
+    <input class="form__input" type="text" id="name" placeholder="strider" autocomplete="off">
+    <button type="submit">Submit</button>
+  </form>
+  <button class="restart-button">Restart!</button>
+</div>
+
+    <div class="modal modal__table">
+  <div class="modal__box">
+    <table class="table table--last-games">
+      <caption>Last games</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody class="table__body table__body--last-games">
+      </tbody>
+    </table>
+
+    <table class="table table--top-players">
+      <caption>Top players</caption>
+      <thead>
+        <tr>
+          <th>Score</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody class="table__body table__body--top-players">
+      </tbody>
+    </table>
+  </div>
+  <button class="restart-button">Restart!</button>
+</div>
+
     <script src="js/app.min.js" type="module"></script>
   </body>
 </html>
