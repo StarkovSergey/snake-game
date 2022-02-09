@@ -9,6 +9,10 @@ import { showModal, closeModal } from './save-results.js';
 
 const modalForm = document.querySelector('.form');
 const tableModal = document.querySelector('.modal__table');
+const nextLevelModal = document.querySelector('.level');
+const nextLevelButton = document.querySelector('.level__go-button');
+const restartButtons = document.querySelectorAll('.restart-button');
+const input = document.querySelector('.form__input');
 
 let lastRenderTime = 0;
 let gameOver = false;
@@ -27,10 +31,12 @@ const checkWin = () => {
 };
 
 const update = () => {
-  updateSnake();
-  updateFood();
-  checkDeath();
-  checkWin();
+  if (!gameStatus.isPaused) {
+    updateSnake();
+    updateFood();
+    checkDeath();
+    checkWin();
+  }
 };
 
 const draw = () => {
@@ -39,10 +45,32 @@ const draw = () => {
   drawFood(gameBoard);
 };
 
+const goToNextLevel = (evt) => {
+  console.log(evt.key);
+  if (evt.key && evt.key !== 'Enter') {
+    return;
+  }
+
+  nextLevelButton.removeEventListener('click', goToNextLevel);
+  window.removeEventListener('keydown', goToNextLevel);
+
+  gameStatus.resetHunger();
+  gameStatus.speedUp();
+  gameStatus.resetSnakeBody();
+  gameStatus.plusLevel();
+  gameStatus.win = false;
+  gameStatus.newSegment = 0;
+  gameStatus.isPaused = false;
+  renderScoreElements();
+  closeModal(nextLevelModal);
+};
+
 function main(currentTime) {
   if (gameOver) {
     document.querySelector('.form__score').textContent = gameStatus.score;
     showModal(modalForm);
+    input.focus();
+    window.addEventListener('keydown', restartGame);
     return;
   }
 
@@ -59,28 +87,29 @@ function main(currentTime) {
   draw();
 
   if (gameStatus.win) {
-    if (confirm('You win! Are you ready for next level?')) {
-      gameStatus.resetHunger();
-      gameStatus.speedUp();
-      gameStatus.resetSnakeBody();
-      gameStatus.plusLevel();
-      gameStatus.win = false;
-      gameStatus.newSegment = 0;
-      renderScoreElements();
-    }
+    gameStatus.isPaused = true;
+    showModal(nextLevelModal);
+    nextLevelButton.focus();
+    nextLevelButton.addEventListener('click', goToNextLevel);
+    window.addEventListener('keydown', goToNextLevel);
   }
 }
 
-const restartGame = () => {
+const restartGame = (evt) => {
+  if (evt.key && evt.key !== 'Escape') {
+    return;
+  }
+
   closeModal(modalForm);
   closeModal(tableModal);
   gameOver = false;
   gameStatus.resetGame();
   renderScoreElements();
   window.requestAnimationFrame(main);
+  window.removeEventListener('keydown', restartGame);
 };
 
-document.querySelectorAll('.restart-button').forEach((button) => button.addEventListener('click', restartGame));
+restartButtons.forEach((button) => button.addEventListener('click', restartGame));
 
 window.requestAnimationFrame(main);
 

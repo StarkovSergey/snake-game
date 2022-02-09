@@ -1,11 +1,12 @@
 export const gameStatus = {
   win: false,
+  isPaused: false,
   snakeBody: [{ x: 11, y: 11 }],
   newSegment: 0,
   resetSnakeBody() {
     this.snakeBody = [{ x: 11, y: 11 }];
   },
-  speed: 8,
+  speed: 10,
   resetSpeed() {
     this.speed = 8;
   },
@@ -16,9 +17,9 @@ export const gameStatus = {
   plusScore() {
     this.score++;
   },
-  hunger: 3,
+  hunger: 15,
   resetHunger() {
-    this.hunger = 3;
+    this.hunger = 15;
   },
   minusHunger() {
     this.hunger--;

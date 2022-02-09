@@ -13,7 +13,9 @@
   min-width: 300px;
   height: calc(100vmin - 190px);
   min-height: 300px;
-  background-color: #cccccc;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #9e9e9e;
 }
 
 .snake {
@@ -22,6 +24,6 @@
 }
 
 .food {
-  border: 0.25vmin solid black;
-  background-color: #f19e17;
+  background-image: url("../../img/food/food-4.svg");
+  background-size: contain;
 }

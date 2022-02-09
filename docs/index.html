@@ -44,13 +44,15 @@
 </footer>
 
     <div class="modal form">
-  <p>The end! Your score: <span class="form__score"></span></p>
+  <p class="form__text">The end! Your score: <span class="form__score"></span></p>
   <form class="form__form">
     <label for="name">Your name</label>
     <input class="form__input" type="text" id="name" placeholder="strider" autocomplete="off">
-    <button type="submit">Submit</button>
+    <div class="form__button-box">
+      <button type="submit">Submit</button>
+      <button class="restart-button" type="button">Restart!</button>
+    </div>
   </form>
-  <button class="restart-button">Restart!</button>
 </div>
 
     <div class="modal modal__table">
@@ -80,6 +82,12 @@
     </table>
   </div>
   <button class="restart-button">Restart!</button>
+</div>
+
+    <div class="modal level">
+  <p class="level__text">You're at the next level!
+    <br>Press Enter to continue</p>
+  <button class="level__go-button">Go!</button>
 </div>
 
     <script src="js/app.min.js" type="module"></script>

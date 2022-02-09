@@ -75,6 +75,9 @@ form.addEventListener('submit', (evt) => {
   showModal(tableModal);
   renderLastGamesTable();
   renderTopPlayersTable();
+
+  const restartButton = document.querySelector('.modal__table .restart-button');
+  restartButton.focus();
 });
 
 // const isPlayerTop = (score) => {
