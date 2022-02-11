@@ -25,24 +25,10 @@
 }
 :root {
   --basic-white: #ffffff;
-  --basic-white-to-special: #ffffff;
   --basic-black: #000000;
-  --basic-black-to-special: #000000;
-  --basic-black-const: #000000;
-  --basic-black-a50: rgb(0 0 0 / 50%);
-  --special: #bdae82;
-  --special-to-white: #bdae82;
-  --special-to-black: #bdae82;
-}
-
-:root.page--light-theme {
-  --basic-white: #1c1c1c;
-  --basic-black: #ffffff;
-  --basic-black-a50: rgb(255 255 255 / 50%);
-  --basic-white-to-special: #bdae82;
-  --special-to-white: #ffffff;
-  --special-to-black: #1c1c1c;
-  --basic-black-to-special: #bdae82;
+  --game-board-color: #bdbdbd;
+  --snake-body-color: #4caf50;
+  --snake-head-color: #388e3c;
 }
 
 *,
@@ -188,7 +174,7 @@ button {
   height: -moz-min-content;
   height: min-content;
   padding: 5px;
-  border: 1px solid #72c888;
+  border: 1px solid var(--snake-body-color);
   border-radius: 3px;
 }
 
@@ -198,8 +184,12 @@ button {
 
 .parameter__number {
   display: inline-block;
+  width: 35px;
   padding: 5px;
-  background-color: #72c888;
+  border-radius: 3px;
+  color: var(--basic-white);
+  text-align: center;
+  background-color: var(--snake-body-color);
 }
 
 .modal {
@@ -267,12 +257,15 @@ button {
   min-height: 300px;
   border-radius: 5px;
   overflow: hidden;
-  background-color: #9e9e9e;
+  background-color: var(--game-board-color);
 }
 
 .snake {
-  border: 0.25vmin solid black;
-  background-color: #238f23;
+  background-color: var(--snake-body-color);
+}
+
+.snake__head {
+  background-color: var(--snake-head-color);
 }
 
 .food {

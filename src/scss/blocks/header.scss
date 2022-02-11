@@ -12,7 +12,7 @@
 .parameter {
   height: min-content;
   padding: 5px;
-  border: 1px solid #72c888;
+  border: 1px solid var(--snake-body-color);
   border-radius: 3px;
 }
 
@@ -22,6 +22,10 @@
 
 .parameter__number {
   display: inline-block;
+  width: 35px;
   padding: 5px;
-  background-color: #72c888;
+  border-radius: 3px;
+  color: var(--basic-white);
+  text-align: center;
+  background-color: var(--snake-body-color);
 }

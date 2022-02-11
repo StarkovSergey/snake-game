@@ -22,16 +22,6 @@ export const update = () => {
   gameStatus.snakeBody[0].y += inputDirection.y;
 };
 
-export const draw = (gameBoard) => {
-  gameStatus.snakeBody.forEach((segment) => {
-    const snakeElement = document.createElement('div');
-    snakeElement.style.gridRowStart = segment.y;
-    snakeElement.style.gridColumnStart = segment.x;
-    snakeElement.classList.add('snake');
-    gameBoard.append(snakeElement);
-  });
-};
-
 export const expandSnake = (amount) => {
   gameStatus.newSegment += amount;
 };
@@ -50,3 +40,18 @@ export const onSnake = (position, { ignoreHead = false } = {}) => gameStatus.sna
 export const getSnakeHead = () => gameStatus.snakeBody[0];
 
 export const snakeIntersection = () => onSnake(gameStatus.snakeBody[0], { ignoreHead: true });
+
+export const draw = (gameBoard) => {
+  const head = getSnakeHead();
+  gameStatus.snakeBody.forEach((segment) => {
+    const snakeElement = document.createElement('div');
+    snakeElement.style.gridRowStart = segment.y;
+    snakeElement.style.gridColumnStart = segment.x;
+    snakeElement.classList.add('snake');
+    gameBoard.append(snakeElement);
+
+    if (segment.x === head.x && segment.y === head.y) {
+      snakeElement.classList.add('snake__head');
+    }
+  });
+};
