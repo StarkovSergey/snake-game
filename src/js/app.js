@@ -110,6 +110,11 @@ const restartGame = (evt) => {
 };
 
 restartButtons.forEach((button) => button.addEventListener('click', restartGame));
+document.addEventListener('keydown', (evt) => {
+  if (evt.code === 'Space') {
+    gameStatus.togglePaused();
+  }
+});
 
 window.requestAnimationFrame(main);
 

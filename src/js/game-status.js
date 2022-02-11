@@ -1,6 +1,9 @@
 export const gameStatus = {
   win: false,
   isPaused: false,
+  togglePaused() {
+    this.isPaused = !this.isPaused;
+  },
   snakeBody: [{ x: 11, y: 11 }],
   newSegment: 0,
   resetSnakeBody() {
