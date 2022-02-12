@@ -15,8 +15,16 @@ const getRandomFoodPosition = () => {
 let food = getRandomFoodPosition();
 const EXPANSION_RATE = 1;
 
+// https://starkovsergey.github.io/snake-game/img/volume-on-icon.svg
+const sound = new Audio('https://starkovsergey.github.io/snake-game/files/robot-blinking.mp3');
+sound.volume = 0.2;
+
 export const update = () => {
   if (onSnake(food)) {
+    sound.currentTime = 0;
+    if (gameStatus.sound) {
+      sound.play();
+    }
     expandSnake(EXPANSION_RATE);
     food = getRandomFoodPosition();
     gameStatus.plusScore();

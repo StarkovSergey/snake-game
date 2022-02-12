@@ -1,6 +1,10 @@
 export const gameStatus = {
   win: false,
   isPaused: false,
+  sound: true,
+  toggleSound() {
+    this.sound = !this.sound;
+  },
   togglePaused() {
     this.isPaused = !this.isPaused;
   },

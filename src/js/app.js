@@ -6,6 +6,7 @@ import { update as updateFood, draw as drawFood } from './food.js';
 import { outsideGrid } from './grid.js';
 import { renderScoreElements } from './interface.js';
 import { showModal, closeModal } from './save-results.js';
+import { renderSoundButton, soundButton } from './sound.js';
 
 const modalForm = document.querySelector('.form');
 const tableModal = document.querySelector('.modal__table');
@@ -19,6 +20,12 @@ let gameOver = false;
 let resetGame = false;
 
 renderScoreElements();
+renderSoundButton();
+
+soundButton.addEventListener('click', () => {
+  gameStatus.toggleSound();
+  renderSoundButton();
+});
 
 const gameBoard = document.querySelector('#game-board');
 
@@ -69,7 +76,7 @@ function main(currentTime) {
   if (gameOver) {
     document.querySelector('.form__score').textContent = gameStatus.score;
     showModal(modalForm);
-    input.focus();
+    input.select();
     window.addEventListener('keydown', restartGame);
     return;
   }
@@ -119,12 +126,12 @@ document.addEventListener('keydown', (evt) => {
 window.requestAnimationFrame(main);
 
 console.log(`
-Total Score: 50 / 60
+Total Score: 60 / 60
 [x] - Вёрстка присутствует:) (+10)
 [x] - Логика игры (+10)
 [x] - Реализовано завершение игры при достижении игровой цели (+10)
 [x] - По окончанию игры выводится её результат - score (+10)
 [x] - Результаты последних 10 игр сохраняются в local storage. Есть таблица рекордов, в которой сохраняются результаты предыдущих (+10)
-[] - Анимации или звуки, или настройки игры
+[х] - Звуки поедания, с возможностью их отключения
 [] - Качество оформления
 `);

@@ -192,6 +192,23 @@ button {
   background-color: var(--snake-body-color);
 }
 
+.sound-button {
+  display: block;
+  width: 50px;
+  background-image: url("../img/volume-on-icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  outline: none;
+  transition: opacity 200ms ease 0s;
+}
+.sound-button--off {
+  background-image: url("../img/volume-off-icon.svg");
+}
+.sound-button:hover, .sound-button:focus {
+  opacity: 0.8;
+}
+
 .modal {
   position: absolute;
   top: 20px;
